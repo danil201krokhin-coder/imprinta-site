@@ -1,209 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Imprinta — VIP</title>
-  <meta name="description" content="Imprinta — VIP сайт. Премиум печать и дизайн." />
+  <meta name="description" content="Imprinta — премиальная печать и VIP сервис. Быстрый заказ и связь через телефон и Telegram." />
 
   <style>
     :root{
       --bg:#07080b;
       --panel:rgba(255,255,255,.06);
-      --stroke:rgba(255,255,255,.10);
-      --text:rgba(255,255,255,.88);
+      --stroke:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.90);
       --muted:rgba(255,255,255,.62);
       --gold1:#f7d37b;
       --gold2:#caa24d;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,Segoe UI,Roboto,Arial,sans-serif;
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
       background:
-        radial-gradient(900px 500px at 20% 10%, rgba(247,211,123,.18), transparent 60%),
-        radial-gradient(700px 380px at 80% 30%, rgba(202,162,77,.12), transparent 55%),
-        radial-gradient(900px 600px at 50% 90%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(900px 600px at 20% -10%, rgba(247,211,123,.18), transparent 60%),
+        radial-gradient(900px 700px at 110% 10%, rgba(202,162,77,.14), transparent 55%),
+        radial-gradient(900px 700px at 50% 110%, rgba(255,255,255,.06), transparent 55%),
         var(--bg);
-      overflow-x:hidden;
+      color:var(--text);
+      min-height:100vh;
     }
-    .wrap{max-width:1040px;margin:0 auto;padding:28px 18px 72px}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px}
     .top{
       display:flex;align-items:center;justify-content:space-between;gap:14px;
-      padding:10px 12px;border:1px solid var(--stroke);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius:16px;backdrop-filter: blur(10px);
+      padding:10px 0 22px;
     }
-    .brand{display:flex;align-items:center;gap:10px}
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
     .logo{
-      width:36px;height:36px;border-radius:12px;
-      border:1px solid rgba(247,211,123,.55);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(247,211,123,.35), transparent 55%),
-        radial-gradient(circle at 70% 70%, rgba(202,162,77,.25), transparent 55%),
-        rgba(255,255,255,.06);
-      display:grid;place-items:center;
+      width:44px;height:44px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(247,211,123,.95), rgba(202,162,77,.95));
+      box-shadow: 0 10px 28px rgba(202,162,77,.22);
     }
-    .logo span{font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,.92)}
-    .brand b{letter-spacing:.3px}
-    .pill{
-      font-size:12px;color:rgba(0,0,0,.85);
-      padding:6px 10px;border-radius:999px;
-      background:linear-gradient(135deg,var(--gold1),var(--gold2));
-      box-shadow:0 8px 26px rgba(247,211,123,.18);
-      white-space:nowrap;
-    }
-
-    .hero{padding:56px 6px 26px}
-    .kicker{
-      display:inline-flex;gap:8px;align-items:center;
-      padding:7px 12px;border-radius:999px;
-      border:1px solid rgba(247,211,123,.22);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);font-size:13px;
-    }
-    h1{
-      margin:16px 0 10px;
-      font-size:clamp(34px,5.5vw,56px);
-      line-height:1.05;
-      letter-spacing:-.6px;
-    }
-    .gold{
-      background:linear-gradient(135deg,var(--gold1),var(--gold2));
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-      text-shadow:0 10px 30px rgba(247,211,123,.12);
-    }
-    .lead{
-      margin:0;
-      max-width:720px;
-      color:var(--muted);
-      font-size:clamp(15px,2.1vw,18px);
-      line-height:1.55;
-    }
-
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-    .btn{
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,.05);
-      color:var(--text);
-      padding:12px 16px;border-radius:14px;
-      text-decoration:none;
-      display:inline-flex;align-items:center;gap:10px;
-      transition:.15s transform,.15s background,.15s border-color;
-    }
-    .btn:active{transform:translateY(1px)}
-    .btn:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18)}
-    .btn.gold{
-      border-color:rgba(247,211,123,.35);
-      background:linear-gradient(135deg, rgba(247,211,123,.95), rgba(202,162,77,.95));
-      color:rgba(0,0,0,.9);
-      font-weight:600;
-    }
-    .btn.gold:hover{filter:brightness(1.02)}
-    .icon{width:18px;height:18px;opacity:.95}
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:14px;
-      margin-top:18px;
-    }
-    .card{
-      grid-column:span 6;
-      padding:18px 16px;
-      border-radius:18px;
-      border:1px solid var(--stroke);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      backdrop-filter: blur(10px);
-    }
-    .card h3{margin:0 0 6px;font-size:16px;letter-spacing:.2px}
-    .card p{margin:0;color:var(--muted);line-height:1.5;font-size:14px}
-    .card small{display:block;margin-top:10px;color:rgba(247,211,123,.72)}
-    @media (max-width:820px){
-      .card{grid-column:span 12}
-      .hero{padding-top:44px}
-    }
-    .footer{
-      margin-top:26px;
-      padding:16px 6px 0;
-      color:rgba(255,255,255,.44);
-      font-size:12px;
-      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
-    }
-    .footer a{color:rgba(247,211,123,.72);text-decoration:none}
-  </style>
-</head>
-
-<body>
-  <div class="wrap">
-    <header class="top">
-      <div class="brand">
-        <div class="logo"><span>I</span></div>
-        <div>
-          <b>Imprinta</b><br/>
-          <span style="color:rgba(255,255,255,.55);font-size:12px">Premium • VIP</span>
-        </div>
-      </div>
-      <div class="pill">VIP ACCESS</div>
-    </header>
-
-    <section class="hero">
-      <div class="kicker">💎 Премиум-качество • быстрые сроки • без лишнего шума</div>
-      <h1>Сайт <span class="gold">Imprinta</span> в стиле VIP</h1>
-      <p class="lead">
-        Делаем печать и дизайн, которые выглядят дорого: аккуратные материалы, чистая подача,
-        персональный подход и контроль качества на каждом этапе.
-      </p>
-
-      <div class="actions">
-        <a class="btn gold" href="#contact">
-          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Связаться (VIP)
-        </a>
-        <a class="btn" href="#services">
-          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Услуги
-        </a>
-        <a class="btn" href="#portfolio">
-          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 19h16V7H4v12Z" stroke="currentColor" stroke-width="2"/><path d="M8 7V5h8v2" stroke="currentColor" stroke-width="2"/></svg>
-          Портфолио
-        </a>
-      </div>
-
-      <div class="grid" id="services">
-        <div class="card">
-          <h3>Печать премиум-класса</h3>
-          <p>Визитки, меню, упаковка, сертификаты — строгая геометрия, точный цвет, идеальная подача.</p>
-          <small>• контроль качества</small>
-        </div>
-        <div class="card">
-          <h3>Дизайн “дорогой” подачи</h3>
-          <p>Минимализм + акцент. Подберём шрифты, сетку и стиль так, чтобы выглядело VIP.</p>
-          <small>• типографика</small>
-        </div>
-        <div class="card" id="portfolio">
-          <h3>Портфолио</h3>
-          <p>Добавим фото работ и кейсы (можем подключить галерею). Пока — раздел в разработке.</p>
-          <small>• скоро</small>
-        </div>
-        <div class="card" id="contact">
-          <h3>Контакты</h3>
-          <p>Телефон: <b>+7 (___) ___-__-__</b><br/>Telegram: <b>@____</b><br/>Город: <b>_____</b></p>
-          <small>• заполни свои данные</small>
-        </div>
-      </div>
-
-      <div class="footer">
-        <div>© <span id="y"></span> Imprinta. Premium / VIP</div>
-        <div><a href="#">Политика</a> · <a href="#">Условия</a></div>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+    .brand h1{margin:0;font-size:18px;letter-spacing:.
