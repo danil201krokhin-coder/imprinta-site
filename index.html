@@ -2,88 +2,210 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Imprinta — VIP</title>
-  <meta name="description" content="Imprinta — премиум сервис. Заказы и связь: телефон и Telegram."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Imprinta — типография</title>
+  <meta name="description" content="Imprinta — типография: визитки, этикетки, вырубка, коробки. Быстрый заказ в Telegram." />
+
   <style>
     :root{
       --bg:#07080b;
       --panel:rgba(255,255,255,.06);
       --stroke:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.92);
+      --text:rgba(255,255,255,.90);
       --muted:rgba(255,255,255,.62);
       --gold1:#f7d37b;
       --gold2:#caa24d;
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --radius:18px;
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
       background:
-        radial-gradient(900px 600px at 20% 10%, rgba(247,211,123,.10), transparent 60%),
-        radial-gradient(900px 700px at 110% 30%, rgba(202,162,77,.12), transparent 55%),
-        radial-gradient(900px 700px at 50% 120%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(900px 600px at 20% 10%, rgba(247,211,123,.14), transparent 60%),
+        radial-gradient(900px 700px at 110% 40%, rgba(202,162,77,.12), transparent 55%),
+        radial-gradient(900px 700px at 50% 110%, rgba(255,255,255,.06), transparent 60%),
         var(--bg);
       color:var(--text);
-      min-height:100vh;
     }
-    .wrap{max-width:980px;margin:0 auto;padding:26px 16px 44px;}
-    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 22px;}
+    a{color:inherit}
+    .wrap{max-width:980px;margin:0 auto;padding:22px 16px 48px}
+    .top{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:10px 0 22px;
+    }
     .brand{display:flex;align-items:center;gap:12px}
     .logo{
       width:44px;height:44px;border-radius:14px;
-      background:linear-gradient(135deg, rgba(247,211,123,.95), rgba(202,162,77,.95));
-      box-shadow:0 14px 40px rgba(247,211,123,.18);
+      background:linear-gradient(135deg,var(--gold1),var(--gold2));
+      box-shadow:0 10px 30px rgba(247,211,123,.18);
     }
-    .title{font-size:18px;font-weight:700;letter-spacing:.2px;margin:0}
-    .tag{margin:4px 0 0;color:var(--muted);font-size:13px}
-    .card{
+    .brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.2px}
+    .brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
+
+    .hero{
       border:1px solid var(--stroke);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-radius:24px;
+      padding:22px;
       box-shadow:var(--shadow);
-      border-radius:18px;
-      padding:18px;
-      overflow:hidden;
       position:relative;
+      overflow:hidden;
     }
-    .card:before{
+    .hero:before{
       content:"";
       position:absolute;inset:-2px;
-      background:radial-gradient(600px 260px at 30% 0%, rgba(247,211,123,.18), transparent 60%);
+      background:radial-gradient(500px 240px at 15% 20%, rgba(247,211,123,.18), transparent 60%);
       pointer-events:none;
     }
-    h1{margin:0 0 10px;font-size:32px;letter-spacing:.2px}
-    p{margin:0 0 14px;color:var(--muted);line-height:1.5}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:18px}
-    .box{
-      grid-column:span 12;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.25);
-      border-radius:16px;
-      padding:14px;
+    .hero h2{
+      margin:0 0 8px;
+      font-size:36px;
+      letter-spacing:-.6px;
+      position:relative;
     }
-    .box b{color:var(--text)}
-    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .hero .sub{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.45;
+      max-width:64ch;
+      position:relative;
+    }
+    .actions{display:flex;gap:12px;flex-wrap:wrap;position:relative}
     .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:12px 14px;border-radius:14px;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      border-radius:14px;
+      padding:12px 14px;
       border:1px solid rgba(255,255,255,.18);
       background:rgba(255,255,255,.06);
-      color:var(--text);text-decoration:none;
-      transition:.15s transform, .15s filter;
+      text-decoration:none;
       font-weight:600;
+      letter-spacing:.2px;
+      transition:transform .12s ease, filter .12s ease, background .12s ease;
+      user-select:none;
+      min-width:170px;
     }
+    .btn:hover{background:rgba(255,255,255,.08)}
     .btn:active{transform:translateY(1px)}
     .btn.gold{
       border-color:rgba(247,211,123,.35);
       background:linear-gradient(135deg, rgba(247,211,123,.95), rgba(202,162,77,.95));
       color:rgba(0,0,0,.90);
+      font-weight:700;
     }
-    .foot{margin-top:14px;color:rgba(255,255,255,.45);font-size:12px}
-    @media (min-width:740px){
-      h1{font-size:40px}
-      .box{grid-column:span 6}
+    .btn.gold:hover{filter:brightness(1.02)}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .card{
+      grid-column:span 12;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.05);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:0 10px 40px rgba(0,0,0,.35);
+    }
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{margin:0;color:var(--muted);line-height:1.45}
+    .card .meta{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+    .tag{
+      font-size:12px;color:rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.14);
+      padding:6px 10px;border-radius:999px;
+      background:rgba(255,255,255,.04);
+    }
+    .card .row{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+    .mini{
+      min-width:auto;
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:13px;
+    }
+
+    .sectionTitle{
+      margin:22px 0 10px;
+      font-size:14px;
+      color:rgba(255,255,255,.78);
+      letter-spacing:.8px;
+      text-transform:uppercase;
+    }
+
+    /* modal */
+    .modalBack{
+      position:fixed;inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      align-items:center;justify-content:center;
+      padding:16px;
+      z-index:50;
+    }
+    .modal{
+      width:min(720px, 100%);
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, rgba(18,18,22,.98), rgba(10,10,13,.98));
+      border-radius:22px;
+      box-shadow:0 30px 90px rgba(0,0,0,.65);
+      overflow:hidden;
+    }
+    .modalHead{
+      padding:16px 16px 10px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .modalHead b{font-size:16px}
+    .x{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:12px;
+      padding:8px 10px;
+      cursor:pointer;
+    }
+    .modalBody{padding:14px 16px 16px}
+    .form{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+    .field{grid-column:span 12}
+    label{display:block;font-size:12px;color:rgba(255,255,255,.70);margin:0 0 6px}
+    select,input{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      outline:none;
+    }
+    input::placeholder{color:rgba(255,255,255,.35)}
+    .result{
+      margin-top:14px;
+      border:1px solid rgba(247,211,123,.18);
+      background:rgba(247,211,123,.08);
+      border-radius:16px;
+      padding:14px;
+      display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;
+    }
+    .price{font-size:26px;font-weight:800;letter-spacing:-.4px}
+    .hint{color:rgba(255,255,255,.70);font-size:12px;line-height:1.4}
+    .foot{
+      margin-top:10px;
+      color:rgba(255,255,255,.45);
+      font-size:12px;
+    }
+
+    @media (min-width:720px){
+      .card{grid-column:span 6}
+      .field.half{grid-column:span 6}
+      .hero h2{font-size:44px}
     }
   </style>
 </head>
@@ -91,37 +213,225 @@
   <div class="wrap">
     <div class="top">
       <div class="brand">
-        <div class="logo"></div>
+        <div class="logo" aria-hidden="true"></div>
         <div>
-          <p class="title">Imprinta</p>
-          <p class="tag">Премиум / VIP сайт • Заглушка</p>
+          <h1>Imprinta</h1>
+          <p>Типография • печать • дизайн</p>
         </div>
       </div>
+      <a class="btn mini" href="#catalog">Услуги</a>
     </div>
 
-    <div class="card">
-      <h1>Imprinta — VIP</h1>
-      <p>Сайт в разработке. Уже скоро здесь будет премиум-витрина услуг и быстрый заказ.</p>
-
-      <div class="btns">
+    <div class="hero">
+      <h2>Премиальная типография</h2>
+      <p class="sub">
+        Визитки, этикетки, вырубка, упаковка и коробки.
+        Быстрый расчёт и заказ — в Telegram или по телефону.
+      </p>
+      <div class="actions">
         <a class="btn gold" href="https://t.me/kroha_idey" target="_blank" rel="noopener">Написать в Telegram</a>
         <a class="btn" href="tel:+79990000000">Позвонить</a>
+        <button class="btn" id="openCalc" type="button">Калькулятор</button>
+      </div>
+    </div>
+
+    <div class="sectionTitle" id="catalog">Услуги</div>
+    <div class="grid">
+      <div class="card">
+        <h3>Визитки</h3>
+        <p>Плотные материалы, премиальная печать, опции ламинации и софт-тач.</p>
+        <div class="meta">
+          <span class="tag">4+0 / 4+4</span>
+          <span class="tag">мат / глянец</span>
+          <span class="tag">soft-touch</span>
+        </div>
+        <div class="row">
+          <button class="btn mini gold calcPreset" data-product="cards" type="button">Рассчитать</button>
+          <a class="btn mini" href="https://t.me/kroha_idey" target="_blank" rel="noopener">Заказать</a>
+        </div>
       </div>
 
-      <div class="grid">
-        <div class="box">
-          <b>Заказы</b><br>
-          Оформление через Telegram или по телефону.
+      <div class="card">
+        <h3>Этикетки</h3>
+        <p>Рулонные/листовые, белые и прозрачные материалы, стойкие клеи.</p>
+        <div class="meta">
+          <span class="tag">самоклейка</span>
+          <span class="tag">белая/прозрачная</span>
+          <span class="tag">тираж</span>
         </div>
-        <div class="box">
-          <b>Связь</b><br>
-          Telegram: <span style="color:var(--text)">@kroha_idey</span><br>
-          Телефон: <span style="color:var(--text)">+7 999 000-00-00</span>
+        <div class="row">
+          <button class="btn mini gold calcPreset" data-product="labels" type="button">Рассчитать</button>
+          <a class="btn mini" href="https://t.me/kroha_idey" target="_blank" rel="noopener">Заказать</a>
         </div>
       </div>
 
-      <div class="foot">© Imprinta • VIP</div>
+      <div class="card">
+        <h3>Вырубка</h3>
+        <p>Фигурная резка, высечка, нестандартные формы. Точно и аккуратно.</p>
+        <div class="meta">
+          <span class="tag">контур</span>
+          <span class="tag">шаблон</span>
+          <span class="tag">сложность</span>
+        </div>
+        <div class="row">
+          <button class="btn mini" onclick="location.href='https://t.me/kroha_idey'" type="button">Рассчитать в Telegram</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Коробки и упаковка</h3>
+        <p>Коробки, ложементы, бренд-упаковка. Материалы, тиснение, кашировка.</p>
+        <div class="meta">
+          <span class="tag">макет</span>
+          <span class="tag">материалы</span>
+          <span class="tag">постпечатка</span>
+        </div>
+        <div class="row">
+          <button class="btn mini" onclick="location.href='https://t.me/kroha_idey'" type="button">Рассчитать в Telegram</button>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column:span 12">
+        <h3>Заказ и связь</h3>
+        <p>Оформление через Telegram или по телефону. Ответим быстро, рассчитаем точно.</p>
+        <div class="row">
+          <a class="btn mini gold" href="https://t.me/kroha_idey" target="_blank" rel="noopener">Telegram: @kroha_idey</a>
+          <a class="btn mini" href="tel:+79990000000">Телефон: +7 999 000-00-00</a>
+        </div>
+        <div class="foot">© Imprinta</div>
+      </div>
     </div>
   </div>
-</body>
-</html>
+
+  <!-- Calculator modal -->
+  <div class="modalBack" id="calcBack" role="dialog" aria-modal="true" aria-label="Калькулятор">
+    <div class="modal">
+      <div class="modalHead">
+        <b>Калькулятор печати</b>
+        <button class="x" id="closeCalc" type="button">Закрыть</button>
+      </div>
+      <div class="modalBody">
+        <div class="hint">
+          Выберите товар и параметры — получите ориентировочную стоимость.
+          Для вырубки/коробок расчёт точнее делаем в Telegram.
+        </div>
+
+        <div class="form">
+          <div class="field half">
+            <label for="product">Товар</label>
+            <select id="product">
+              <option value="cards">Визитки</option>
+              <option value="labels">Этикетки</option>
+            </select>
+          </div>
+
+          <div class="field half">
+            <label for="qty">Тираж (шт.)</label>
+            <input id="qty" type="number" min="50" step="50" value="100" />
+          </div>
+
+          <div class="field half">
+            <label for="sides">Печать</label>
+            <select id="sides">
+              <option value="1">1 сторона (4+0)</option>
+              <option value="2">2 стороны (4+4)</option>
+            </select>
+          </div>
+
+          <div class="field half">
+            <label for="finish">Покрытие</label>
+            <select id="finish">
+              <option value="none">Без покрытия</option>
+              <option value="matte">Матовая ламинация</option>
+              <option value="gloss">Глянцевая ламинация</option>
+              <option value="soft">Soft-touch</option>
+            </select>
+          </div>
+
+          <div class="field half">
+            <label for="paper">Материал</label>
+            <select id="paper">
+              <option value="std">Стандарт</option>
+              <option value="premium">Премиум плотный</option>
+            </select>
+          </div>
+
+          <div class="field half">
+            <label for="cut">Резка</label>
+            <select id="cut">
+              <option value="straight">Прямая</option>
+              <option value="round">Скругление углов</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="result">
+          <div>
+            <div class="price" id="price">—</div>
+            <div class="hint" id="details">Заполните параметры — и получите расчёт.</div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn mini gold" id="orderBtn" href="https://t.me/kroha_idey" target="_blank" rel="noopener">Заказать в Telegram</a>
+            <button class="btn mini" id="recalc" type="button">Пересчитать</button>
+          </div>
+        </div>
+
+        <div class="foot">
+          * Итог зависит от макета, сроков и доп. работ. Для точного расчёта — напишите в Telegram.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === Настройка прайса (легко менять) ===
+    // base: базовая стоимость за 100 шт. для 1 стороны, стандарт, без покрытия, прямая резка
+    const PRICE = {
+      cards: { base100: 900, perExtra100: 650 },  // визитки
+      labels:{ base100: 1100, perExtra100: 780 }  // этикетки
+    };
+
+    const MULT = {
+      sides: { "1": 1.0, "2": 1.45 },
+      finish:{ none:1.0, matte:1.18, gloss:1.16, soft:1.42 },
+      paper: { std:1.0, premium:1.22 },
+      cut:   { straight:1.0, round:1.08 }
+    };
+
+    function money(n){
+      return new Intl.NumberFormat('ru-RU').format(Math.round(n)) + " ₽";
+    }
+
+    function calc(){
+      const product = document.getElementById('product').value;
+      let qty = parseInt(document.getElementById('qty').value || "0", 10);
+      if (!Number.isFinite(qty) || qty < 50) qty = 50;
+
+      // округлим до 50
+      qty = Math.round(qty / 50) * 50;
+      document.getElementById('qty').value = qty;
+
+      const sides = document.getElementById('sides').value;
+      const finish = document.getElementById('finish').value;
+      const paper = document.getElementById('paper').value;
+      const cut = document.getElementById('cut').value;
+
+      // базовая логика: цена за первые 100 + доп за каждую следующую сотню
+      const blocks = Math.max(1, Math.ceil(qty / 100));
+      const p = PRICE[product];
+
+      let base = p.base100 + (blocks - 1) * p.perExtra100;
+
+      const k =
+        MULT.sides[sides] *
+        MULT.finish[finish] *
+        MULT.paper[paper] *
+        MULT.cut[cut];
+
+      const total = base * k;
+
+      document.getElementById('price').textContent = money(total);
+
+      const name = product === 'cards' ? 'Визитки' : 'Этикетки';
+      const sideText = sides === "1" ? "1 сторона" : "2 стороны";
+      const finishText = {none:"без покрытия", matte:"матовая лам
