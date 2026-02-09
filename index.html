@@ -1,11 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Imprinta</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Imprinta — VIP</title>
+  <meta name="description" content="Imprinta — премиум сервис. Заказы и связь: телефон и Telegram."/>
+  <style>
+    :root{
+      --bg:#07080b;
+      --panel:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.62);
+      --gold1:#f7d37b;
+      --gold2:#caa24d;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial;
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(247,211,123,.10), transparent 60%),
+        radial-gradient(900px 700px at 110% 30%, rgba(202,162,77,.12), transparent 55%),
+        radial-gradient(900px 700px at 50% 120%, rgba(255,255,255,.06), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:26px 16px 44px;}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 22px;}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:14px;
+      background:linear-gradient(135deg, rgba(247,211,123,.95), rgba(202,162,77,.95));
+      box-shadow:0 14px 40px rgba(247,211,123,.18);
+    }
+    .title{font-size:18px;font-weight:700;letter-spacing:.2px;margin:0}
+    .tag{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .card{
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow:var(--shadow);
+      border-radius:18px;
+      padding:18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .card:before{
+      content:"";
+      position:absolute;inset:-2px;
+      background:radial-gradient(600px 260px at 30% 0%, rgba(247,211,123,.18), transparent 60%);
+      pointer-events:none;
+    }
+    h1{margin:0 0 10px;font-size:32px;letter-spacing:.2px}
+    p{margin:0 0 14px;color:var(--muted);line-height:1.5}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:18px}
+    .box{
+      grid-column:span 12;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.25);
+      border-radius:16px;
+      padding:14px;
+    }
+    .box b{color:var(--text)}
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 14px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      color:var(--text);text-decoration:none;
+      transition:.15s transform, .15s filter;
+      font-weight:600;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.gold{
+      border-color:rgba(247,211,123,.35);
+      background:linear-gradient(135deg, rgba(247,211,123,.95), rgba(202,162,77,.95));
+      color:rgba(0,0,0,.90);
+    }
+    .foot{margin-top:14px;color:rgba(255,255,255,.45);font-size:12px}
+    @media (min-width:740px){
+      h1{font-size:40px}
+      .box{grid-column:span 6}
+    }
+  </style>
 </head>
 <body>
-  <h1>Сайт Imprinta</h1>
-  <p>Работает! 🚀</p>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <p class="title">Imprinta</p>
+          <p class="tag">Премиум / VIP сайт • Заглушка</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h1>Imprinta — VIP</h1>
+      <p>Сайт в разработке. Уже скоро здесь будет премиум-витрина услуг и быстрый заказ.</p>
+
+      <div class="btns">
+        <a class="btn gold" href="https://t.me/kroha_idey" target="_blank" rel="noopener">Написать в Telegram</a>
+        <a class="btn" href="tel:+79990000000">Позвонить</a>
+      </div>
+
+      <div class="grid">
+        <div class="box">
+          <b>Заказы</b><br>
+          Оформление через Telegram или по телефону.
+        </div>
+        <div class="box">
+          <b>Связь</b><br>
+          Telegram: <span style="color:var(--text)">@kroha_idey</span><br>
+          Телефон: <span style="color:var(--text)">+7 999 000-00-00</span>
+        </div>
+      </div>
+
+      <div class="foot">© Imprinta • VIP</div>
+    </div>
+  </div>
 </body>
 </html>
