@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Калькулятор листовой продукции (для менеджера)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Калькулятор листовой продукции</h1>
+    <p class="muted">Автопересчёт + копирование расчёта в 1 клик.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Параметры</h2>
+
+      <div class="grid">
+        <label>
+          Тираж, шт
+          <input id="qty" type="number" min="1" step="1" value="1000" />
+        </label>
+
+        <label>
+          Формат
+          <select id="format">
+            <option value="A4">A4</option>
+            <option value="A5">A5</option>
+            <option value="A6">A6</option>
+            <option value="A3">A3</option>
+            <option value="DL">DL (Евро)</option>
+          </select>
+        </label>
+
+        <label>
+          Бумага
+          <select id="paper">
+            <option value="mel_115">Мелованная 115</option>
+            <option value="mel_130">Мелованная 130</option>
+            <option value="mel_150">Мелованная 150</option>
+            <option value="mel_170">Мелованная 170</option>
+            <option value="mel_200">Мелованная 200</option>
+            <option value="mel_250">Мелованная 250</option>
+            <option value="mel_300">Мелованная 300</option>
+
+            <option value="ofs_80">Офсетная 80</option>
+            <option value="ofs_120">Офсетная 120</option>
+
+            <option value="color_80">Цветная 80</option>
+            <option value="color_160">Цветная 160</option>
+
+            <option value="design_250">Дизайнерская 250</option>
+            <option value="design_300">Дизайнерская 300</option>
+
+            <option value="kraft_90">Крафт 90</option>
+            <option value="kraft_120">Крафт 120</option>
+
+            <option value="selfadh">Самоклейка (цена вручную)</option>
+          </select>
+          <small class="hint">Для самоклейки введите цену ниже (₽/кг).</small>
+        </label>
+
+        <label id="selfadhWrap" class="hidden">
+          Самоклейка: цена, ₽/кг
+          <input id="selfadhPricePerKg" type="number" min="0" step="1" value="0" />
+        </label>
+
+        <label>
+          Цветность (лицо)
+          <select id="cFace">
+            <option value="4">4 (CMYK)</option>
+            <option value="1">1</option>
+            <option value="0">0</option>
+          </select>
+        </label>
+
+        <label>
+          Цветность (оборот)
+          <select id="cBack">
+            <option value="0">0</option>
+            <option value="4">4 (CMYK)</option>
+            <option value="1">1</option>
+          </select>
+        </label>
+
+        <label>
+          Маржа, %
+          <input id="marginPct" type="number" min="0" step="1" value="40" />
+          <small class="hint">Формула: Цена = Себестоимость × 1.13 × (1 + Маржа/100). 13% применяется всегда.</small>
+        </label>
+      </div>
+
+      <hr/>
+
+      <h3>Постпечатка</h3>
+      <div class="grid">
+        <label>
+          Ламинация
+          <select id="lamType">
+            <option value="none">Нет</option>
+            <option value="gloss">Глянец</option>
+            <option value="matt">Мат</option>
+            <option value="softtouch">Софт-тач</option>
+          </select>
+        </label>
+
+        <label>
+          Ламинация: стороны
+          <select id="lamSides">
+            <option value="1">1 сторона</option>
+            <option value="2">2 стороны</option>
+          </select>
+        </label>
+
+        <label>
+          УФ-лак
+          <select id="uvType">
+            <option value="none">Нет</option>
+            <option value="solid">Сплошной</option>
+            <option value="spot">Выборочный</option>
+          </select>
+        </label>
+
+        <label>
+          УФ-лак: стороны
+          <select id="uvSides">
+            <option value="1">1 сторона</option>
+            <option value="2">2 стороны</option>
+          </select>
+        </label>
+
+        <label>
+          Сгибы, шт
+          <input id="folds" type="number" min="0" step="1" value="0" />
+        </label>
+
+        <label>
+          Кругление углов, шт
+          <input id="rounding" type="number" min="0" step="1" value="0" />
+        </label>
+
+        <label>
+          Вырубка, шт
+          <input id="diecut" type="number" min="0" step="1" value="0" />
+        </label>
+
+        <label>
+          Плоттерная резка, шт
+          <input id="plotter" type="number" min="0" step="1" value="0" />
+        </label>
+      </div>
+
+      <div class="row">
+        <button id="btnCalc" type="button">Рассчитать</button>
+        <button id="btnCopy" type="button" class="secondary">Копировать расчёт</button>
+        <span id="err" class="error"></span>
+      </div>
+
+      <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2>Результат</h2>
+
+      <div class="two">
+        <div class="result">
+          <h3>Цифровая печать</h3>
+          <div id="digitalBox" class="box muted">Измените параметры — расчёт появится автоматически.</div>
+        </div>
+        <div class="result">
+          <h3>Офсетная печать</h3>
+          <div id="offsetBox" class="box muted">Измените параметры — расчёт появится автоматически.</div>
+        </div>
+      </div>
+
+      <hr/>
+
+      <h3>Детализация</h3>
+      <div id="breakdown" class="box muted">—</div>
+    </section>
+  </main>
+
+  <footer class="container muted">
+    <small>Режим менеджера. 13% применяется всегда, маржа настраивается.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
